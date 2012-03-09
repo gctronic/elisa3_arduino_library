@@ -11,8 +11,8 @@
  * \date 01.02.12
  * \copyright GNU GPL v3
 
-The code of this module is based on the TV IR remote control of the e-puck library (www.e-puck.org) and
-is adapted to work with Atmel microprocessor. A major difference is that it does work without "Agenda";
+The code of this module is based on the TV IR remote control of the e-puck library (www.e-puck.org) and 
+is adapted to work with Atmel microprocessor. A major difference is that it does work without "Agenda"; 
 it uses directly the Timer2 for timing the reading of the signal.
 
 */
@@ -22,7 +22,6 @@ it uses directly the Timer2 for timing the reading of the signal.
 #include <avr\interrupt.h>
 #include "variables.h"
 #include "leds.h"
-#include "usart.h"
 
 
 #ifdef __cplusplus
@@ -54,7 +53,7 @@ unsigned char ir_remote_get_address(void);
 unsigned char ir_remote_get_data(void);
 
 /**
- * \brief Interpret the commands received through TV remote control in case
+ * \brief Interpret the commands received through TV remote control in case 
  * it is enabled.
  * \return none
  */

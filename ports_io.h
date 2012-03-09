@@ -10,8 +10,8 @@
  * \date 01.02.12
  * \copyright GNU GPL v3
 
- The module is responsible for configuring the direction and state of all the
- microprocessor pins.
+ The module is responsible for configuring the direction and state of all the 
+ microprocessor pins. 
 
 */
 
@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 /**
- * \brief Set pins direction and their initial state based on hardware revision.
+ * \brief Set pins direction and their initial state based on hardware revision. 
  * Unused pins are set to output in low state. Pull-up feature is disabled.
  * \return none
  */

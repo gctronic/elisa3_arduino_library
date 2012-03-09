@@ -1,6 +1,7 @@
 
 #include "sensors.h"
 
+
 void calibrateSensors() {
 
 	unsigned int i=0;
@@ -36,7 +37,7 @@ void calibrateSensors() {
 
 					calibrationCycle++;
 
-					continue;					// the first time "proxUpdated" is set, all the proximity values saved in the array
+					continue;					// the first time "proxUpdated" is set, all the proximity values saved in the array 
 												// "proximityResult" hasn't the offset reset to 0. so we start the actual calibration
 												// the next time
 				}
@@ -124,7 +125,7 @@ unsigned char initMMA7455L() {
 }
 
 unsigned char initADXL345() {
-
+	
 	unsigned char ret = 0;
 
 	// configure device
@@ -171,7 +172,7 @@ void readAccelXY() {
 
 		// values returned from the accelerometer are signed byte data (2’s complement)
 		// reg 0x00: 10 bits output value X LSB
-		// reg 0x01: 10 bits output value X MSB
+		// reg 0x01: 10 bits output value X MSB 
 		// reg 0x02: 10 bits output value Y LSB
 		// reg 0x03: 10 bits output value Y MSB
 		// reg 0x04: 10 bits output value Z LSB
@@ -199,7 +200,7 @@ void readAccelXY() {
 
 		// values returned from the accelerometer are signed byte data (2’s complement)
 		// reg 0x32: 10 bits output value X LSB
-		// reg 0x33: 10 bits output value X MSB
+		// reg 0x33: 10 bits output value X MSB 
 		// reg 0x34: 10 bits output value Y LSB
 		// reg 0x35: 10 bits output value Y MSB
 		// reg 0x36: 10 bits output value Z LSB
@@ -241,7 +242,7 @@ void readAccelXYZ() {
 
 		// values returned from the accelerometer are signed byte data (2’s complement)
 		// reg 0x00: 10 bits output value X LSB
-		// reg 0x01: 10 bits output value X MSB
+		// reg 0x01: 10 bits output value X MSB 
 		// reg 0x02: 10 bits output value Y LSB
 		// reg 0x03: 10 bits output value Y MSB
 		// reg 0x04: 10 bits output value Z LSB
@@ -267,17 +268,17 @@ void readAccelXYZ() {
 			accZ = (((signed int)buff[5]<<8)|buff[4])-accOffsetZ;	// Z axis
 		}
 
-	} else if(useAccel == USE_ADXL345) {
+	} else if(useAccel == USE_ADXL345) {							
 
 		// values returned from the accelerometer are signed byte data (2’s complement)
 		// reg 0x32: 10 bits output value X LSB
-		// reg 0x33: 10 bits output value X MSB
+		// reg 0x33: 10 bits output value X MSB 
 		// reg 0x34: 10 bits output value Y LSB
 		// reg 0x35: 10 bits output value Y MSB
 		// reg 0x36: 10 bits output value Z LSB
 		// reg 0x37: 10 bits output value Z MSB
 
-		i2c_start(accelAddress+I2C_WRITE);							// set device address and write mode
+		i2c_start(accelAddress+I2C_WRITE);							// set device address and write mode	
 		i2c_write(0x32);											// sends address to read from (X LSB)
 		i2c_rep_start(accelAddress+I2C_READ);						// set device address and read mode
 
@@ -319,7 +320,7 @@ void computeAngle() {
 	} else {
 		currPosition = VERTICAL_POS;
 	}
-	if(prevPosition == currPosition) {
+	if(prevPosition == currPosition) {			
 		timesInSamePos++;
 		if(timesInSamePos >= SAME_POS_NUM) {	// if the robot maintains its position for a while, then update the robot position;
 			timesInSamePos = 0;					// this check avoid to pass from one position to the other too fast when near the threshold

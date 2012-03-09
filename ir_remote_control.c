@@ -9,7 +9,13 @@ unsigned char address = 0;
 unsigned char data_ir = 0;
 unsigned char check = 2;
 
-void init_ir_remote_control(void) {
+void init_ir_remote_control(void) { 	
+
+	PCICR = 0;
+	PCMSK1 = 0;
+	TCCR2A = 0;
+	TCCR2B = 0;
+	TIMSK2 = 0;
 
 	PCICR |= (1 << PCIE1);			// enable interrupt on change of PCINT15:8 pins
 	PCMSK1 |= (1 << PCINT15);		// enable PCINT15
@@ -26,7 +32,7 @@ ISR(PCINT1_vect) {
 										// for the falling edge
 			PCICR &= ~(1 << PCIE1);		// disable external interrupt
 			PCMSK1 &= ~(1 << PCINT15);
-
+		
 			// check the pin change isn't due to a glitch; to check this verify that
 			// the pin remain low for at least 400 us (the giltches last about 200 us)
 			// 0.4 / 0.032 = 13 => 0.416 us
@@ -41,7 +47,7 @@ ISR(PCINT1_vect) {
 		}
 
 	}
-
+	
 }
 
 ISR(TIMER2_COMPA_vect) {
@@ -51,14 +57,14 @@ ISR(TIMER2_COMPA_vect) {
 	//PORTB ^= (1 << 5);	// toggle red led
 
 	TCCR2B &= ~(1 << CS22) &~(1 << CS21) &~(1 << CS20);		// stop timer2
-
+	
 		if(checkGlitch) {					// if checking this is a glitch
 
 			if(REMOTE) {					// if high it is a glitch
 
 				PCICR |= (1 << PCIE1);		// re-enable external interrupt to receive the next command
 				PCMSK1 |= (1 << PCINT15);	// clear interrupt flag
-				i = -1;
+				i = -1;			
 
 			} else {						// not a glitch => real command received
 
@@ -86,12 +92,12 @@ ISR(TIMER2_COMPA_vect) {
 					i = -1;
 
 				} else {	// read the check bit
-
+			
 					//cycle value is 0.9 ms to go to check bit so:
 					// 0.9 / 0.032 = 28 => 0.896
 					OCR2A = 28;								// output compare register
 					TCCR2B |= (1 << CS22) | (1 << CS21);	// 1/256 prescaler
-					TIMSK2 |= (1 << OCIE2A);				// enable output compare interrupt
+					TIMSK2 |= (1 << OCIE2A);				// enable output compare interrupt					
 
 					check_temp = address_temp = data_temp = 0;
 					i=0;
@@ -107,7 +113,7 @@ ISR(TIMER2_COMPA_vect) {
 				TIMSK2 |= (1 << OCIE2A);				// enable output compare interrupt
 
 			} else if ((i > 1) && (i < 7)) {			// we read address
-
+		
 				OCR2A = 54;
 				TCCR2B |= (1 << CS22) | (1 << CS21);
 				TIMSK2 |= (1 << OCIE2A);
@@ -127,7 +133,7 @@ ISR(TIMER2_COMPA_vect) {
 				data_temp += temp;
 
 			} else if (i == 13) { 						// last bit read
-
+				
 				TIMSK2 = 0;								// disable all interrupt for timer2
 				PCICR |= (1 << PCIE1);					// enable external interrupt to receive next command
 				PCMSK1 |= (1 << PCINT15);				// clear interrupt flag
@@ -138,10 +144,10 @@ ISR(TIMER2_COMPA_vect) {
 				data_ir = data_temp;
 				command_received=1;
 
-			}
+			} 
 
 		}
-
+	
 		if(i!=-1) {
 
 			i++;
@@ -319,7 +325,7 @@ void handleIRRemoteCommands() {
 
 					}
 					break;
-
+	    
 		       	default:
 	               	break;
 

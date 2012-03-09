@@ -11,8 +11,8 @@
  * \date 01.02.12
  * \copyright GNU GPL v3
 
- The usart peripheral is used primarly for debugging purposes; it's initialized to work at 57600 baud that
- is the maximum throughput usable with the main clock at 8 MHz. An interrupt is generated at each character
+ The usart peripheral is used primarly for debugging purposes; it's initialized to work at 57600 baud that 
+ is the maximum throughput usable with the main clock at 8 MHz. An interrupt is generated at each character 
  reception; a function for transfer data is also available.
 */
 

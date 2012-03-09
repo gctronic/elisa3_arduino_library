@@ -11,7 +11,7 @@
  * \date 01.02.12
  * \copyright GNU GPL v3
 
- General module that contains functions to interact with the sensors mounted on the
+ General module that contains functions to interact with the sensors mounted on the 
  robot (proximity, ground, accelerometer).
  The I2C communication is initialized to work with the accelerometer. There are functions
  to work with both the Freescale MMA7455 and the Analog Device ADXL345 accelerometers.
@@ -74,8 +74,8 @@ void readAccelXY();
 void readAccelXYZ();
 
 /**
- * \brief Compute the angle of the robot using the X and Y axes; the resulting angle is saved in the
- * global variable "currentAngle". The angle refers to a classical reference system where the 0 points
+ * \brief Compute the angle of the robot using the X and Y axes; the resulting angle is saved in the 
+ * global variable "currentAngle". The angle refers to a classical reference system where the 0 points 
  * to the right, 90 to the top, 180 to the left and 270 to the bottom in a vertical wall. In order for
  * the angle to be computed correctly, the robot has to be calibrated leaving it flat on the ground.
  * Moreover this function update the robot motion plane (horizontal or vertical) based on the Z axis; this

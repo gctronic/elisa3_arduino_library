@@ -11,7 +11,7 @@
  * \date 01.02.12
  * \copyright GNU GPL v3
 
- The module contains various functions that aren't related to any other module, they
+ The module contains various functions that aren't related to any other module, they 
  are instead of general use.
 */
 
@@ -53,6 +53,20 @@ void initPeripherals();
  * \return none
  */
 void sleep(unsigned char seconds);
+
+/**
+ * \brief A global variable "clockTick" is incremented at each adc interrupt; this variable is
+ * used as base time (104 us resolution). This function is useful for instance to create non-blocking delays, calling 
+ * the function at start of delay and then re-calling it to check when the desired delay is passed.
+ * \return the current clock ticks since the start
+ */
+unsigned long int getTime100MicroSec();
+
+/**
+ * \brief Simply set the flag that indicates when the battery has to be read.
+ * \return none
+ */
+void readBatteryLevel();
 
 #ifdef __cplusplus
 } // extern "C"
