@@ -276,6 +276,8 @@ void handleRFCommands() {
 
 	if(mirf_data_ready()) {
 
+		rfFlags |= 0x02;
+
 		// clear irq status
 		mirf_config_register(STATUS, 0x70);
 

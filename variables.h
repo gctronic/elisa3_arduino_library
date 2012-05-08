@@ -70,6 +70,8 @@ extern unsigned char rfData[PAYLOAD_SIZE];
 extern unsigned char ackPayload[16];
 extern unsigned char packetId;
 extern unsigned int rfAddress;
+extern unsigned char rfFlags;
+extern unsigned char spiCommError;
 
 /****************/
 /*** RGB LEDS ***/
@@ -78,6 +80,7 @@ extern unsigned char pwm_red;
 extern unsigned char pwm_green;
 extern unsigned char pwm_blue;
 extern unsigned char blinkState;
+extern unsigned char rgbState;
 
 /************/
 /*** UART ***/
@@ -90,6 +93,11 @@ extern unsigned int byteCount;
 extern unsigned char uartBuff[UART_BUFF_SIZE];
 extern unsigned char nextByteIndex;
 extern unsigned char currByteIndex;
+extern unsigned char chooseMenu;
+extern unsigned char menuChoice;
+extern unsigned char addressReceived;
+extern unsigned char menuState;
+extern unsigned char getDataNow;
 
 /*************************/
 /*** IR REMOTE CONTROL ***/
@@ -130,6 +138,12 @@ extern unsigned char currentSelector;
 extern signed int calibrationCycle;
 extern unsigned char startCalibration;
 extern unsigned char hardwareRevision;
+extern unsigned char demoState;
+extern unsigned char lineFound;
+extern unsigned char outOfLine;
+extern unsigned char chargeContact;
+extern unsigned long int demoStartTime;
+extern unsigned long int demoEndTime;
 
 /**************************/
 /*** OBSTACLE AVOIDANCE ***/

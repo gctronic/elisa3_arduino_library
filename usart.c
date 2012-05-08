@@ -92,6 +92,7 @@ unsigned char usart0Receive() {
 
 }
 
+/*
 // The following usart0 rx isr has to be used with aseba.
 ISR(USART0_RX_vect) {
 	byteCount++;
@@ -103,7 +104,41 @@ ISR(USART0_RX_vect) {
 		}
 	}
 }
+*/
 
+ISR(USART0_RX_vect) {
+
+	char receivedByte = UDR0;
+
+	if(chooseMenu) {
+		chooseMenu = 0;
+		menuChoice = receivedByte;
+	} else {
+		switch(menuChoice) {
+			case 1: // send sensors data and activate actuators
+				if(receivedByte == 0xAA) {
+					getDataNow = 1;
+				} else if(receivedByte == 0x55) {
+					chooseMenu = 1;
+					menuChoice = 0;
+				}
+				break;
+
+			case 2:	// address writing in eeprom
+				if(menuState == 0) { // receive rf address LSB:
+					rfAddress = (unsigned int)receivedByte&0x00FF;
+					menuState = 1;
+				} else if(menuState == 1) { // receive rf address MSB
+					rfAddress |= ((unsigned int)receivedByte<<8);
+					addressReceived = 1;
+					menuState = 0;
+					chooseMenu = 1;
+				}
+				break;
+		}
+	}
+
+}
 
 // The following usart0 rx isr was used to control the robo during prototyping; now the radio 
 // substitutes completely the usart for this purpose.

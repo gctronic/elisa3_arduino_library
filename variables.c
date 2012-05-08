@@ -85,12 +85,16 @@ unsigned char ackPayload[16];						// data to send back to the base-station
 unsigned char packetId = 3;
 unsigned int rfAddress = 0;							// this number define the robot ID, used also as the robot
 													// RF address; from this number is then obtained the hardware revision
+unsigned char rfFlags = 0;							// bit0: 1 = spi comm. ok, 0 = spi comm. not ok
+													// bit1: 1 = rf comm. ok, 0 = rf comm. not ok
+unsigned char spiCommError=0;
 
 /****************/
 /*** RGB LEDS ***/
 /****************/
 unsigned char pwm_red = 255, pwm_green = 255, pwm_blue = 255;	// value to set to the pwm registers; this value is expressed in the range 0 (max power) to 255 (off)
 unsigned char blinkState = 0;									// used to toggle the blue led
+unsigned char rgbState = 0;
 
 /************/
 /*** UART ***/
@@ -103,6 +107,11 @@ unsigned int byteCount = 0;
 unsigned char uartBuff[UART_BUFF_SIZE] = {0};
 unsigned char nextByteIndex = 0;
 unsigned char currByteIndex = 0;
+unsigned char chooseMenu = 1;
+unsigned char menuChoice = 0;
+unsigned char addressReceived = 0;
+unsigned char menuState = 0;
+unsigned char getDataNow = 0;
 
 /*************************/
 /*** IR REMOTE CONTROL ***/
@@ -143,6 +152,13 @@ unsigned char currentSelector = 0;					// current selector position
 signed int calibrationCycle = 0;					// indicate how many samples are currently taken for calibration
 unsigned char startCalibration;						// flag indicating when a calibration is in progress
 unsigned char hardwareRevision = HW_REV_3_0;		// hardware revision based on the address saved in eeprom
+unsigned char demoState = 0;
+unsigned char lineFound = 0;
+unsigned char outOfLine = 0;
+unsigned char chargeContact = 0;
+unsigned long int demoStartTime = 0;
+unsigned long int demoEndTime = 0;
+
 
 /**************************/
 /*** OBSTACLE AVOIDANCE ***/

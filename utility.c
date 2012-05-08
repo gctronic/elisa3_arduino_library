@@ -38,6 +38,9 @@ void initPeripherals(void) {
 	initRGBleds();
 	initSPI();
 	mirf_init();
+	if(spiCommError==0) {
+		rfFlags |= 1;
+	}
 	initUsart0();
 	initAccelerometer();
 	init_ir_remote_control();
