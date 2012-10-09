@@ -31,6 +31,8 @@ unsigned int batteryLevel = 0;						// level of the battery sampled
 unsigned char measBattery = 0;						// flag indicating when the battery is sampled (once every 2 second at the moment)
 unsigned char proxUpdated = 0;						// flag indicating that all the sensors (proximity and ground) got a new value
 int proximityResultLinear[8] = {0};					// array containing the linearized values for the proximity senosrs (used in obstacle avoidance)
+signed long int rightMotSteps = 0;
+signed long int leftMotSteps = 0;
 
 /******************************/
 /*** CONSUMPTION CONTROLLER ***/
@@ -152,6 +154,7 @@ unsigned char currentSelector = 0;					// current selector position
 signed int calibrationCycle = 0;					// indicate how many samples are currently taken for calibration
 unsigned char startCalibration;						// flag indicating when a calibration is in progress
 unsigned char hardwareRevision = HW_REV_3_0;		// hardware revision based on the address saved in eeprom
+unsigned char currentOsccal;
 unsigned char demoState = 0;
 unsigned char lineFound = 0;
 unsigned char outOfLine = 0;

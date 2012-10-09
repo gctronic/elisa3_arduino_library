@@ -21,6 +21,8 @@ extern unsigned int batteryLevel;
 extern unsigned char measBattery;
 extern unsigned char proxUpdated;
 extern int proximityResultLinear[8];
+extern signed long int rightMotSteps;
+extern signed long int leftMotSteps;
 
 /******************************/
 /*** CONSUMPTION CONTROLLER ***/
@@ -138,6 +140,7 @@ extern unsigned char currentSelector;
 extern signed int calibrationCycle;
 extern unsigned char startCalibration;
 extern unsigned char hardwareRevision;
+extern unsigned char currentOsccal;
 extern unsigned char demoState;
 extern unsigned char lineFound;
 extern unsigned char outOfLine;

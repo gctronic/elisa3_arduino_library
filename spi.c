@@ -79,7 +79,7 @@ void SPI_Write_Block(uint8_t* data, uint8_t len) {
           SPI_WAIT();
 		  if(spiCommError) {
 			return;
-    }
+		  }
     }
 
 }

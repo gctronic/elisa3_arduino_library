@@ -63,7 +63,9 @@ void calibrateSensors() {
 			}
 
 			for(i=8; i<12; i++) {
-				proximityOffset[i] -= 512;
+				proximityOffset[i] -= 512;	// to get the values from 0 (black surface) to 512 (white surface)
+											// this is because the sensors are really close to the surface and thus
+											// get always "big" values (>512) even with black ground
 			}
 
 			accOffsetX = accOffsetXSum>>4;
