@@ -114,7 +114,7 @@ extern unsigned char behaviorState;
 /*********************/
 /*** ACCELEROMETER ***/
 /*********************/
-extern int accelAddress;
+extern unsigned char accelAddress;
 extern unsigned char useAccel;
 extern signed int accX;
 extern signed int accY;
