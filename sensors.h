@@ -22,9 +22,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include "variables.h"
-#include <avr/io.h>
+#include <avr\io.h>
 #include "leds.h"
 #include "twimaster.h"
+#include "motors.h"
+#include "utility.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -87,6 +89,8 @@ void readAccelXYZ_2();
  * \return none
  */
 void computeAngle();
+
+void readTemperature();
 
 #ifdef __cplusplus
 } // extern "C"

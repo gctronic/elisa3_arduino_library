@@ -23,10 +23,12 @@
 
 
 #include "variables.h"
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include <avr\io.h>
+#include <avr\interrupt.h>
 #include "behaviors.h"
 #include "speed_control.h"
+#include "utility.h"
+#include "eepromIO.h"
 
 
 #ifdef __cplusplus
@@ -66,6 +68,17 @@ void setLeftSpeed(signed char vel);
  * \return none
  */
 void setRightSpeed(signed char vel);
+
+
+void handleCalibration();
+void updateOdomData();
+void initCalibration();
+signed int getInputFromSpeed(signed int s, unsigned char mode);
+signed int cast_speed(signed int vel);
+void getLeftSpeedFromInput();
+void getRightSpeedFromInput();
+void handleSoftAcceleration();
+void writeDefaultCalibration();
 
 
 #ifdef __cplusplus

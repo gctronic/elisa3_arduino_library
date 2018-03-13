@@ -39,6 +39,7 @@ void initPeripherals(void) {
 		hardwareRevision = HW_REV_3_1;
 	}
 
+	initCalibration();
 	initPortsIO();
 	initAdc();
 	initMotors();
@@ -149,4 +150,16 @@ unsigned long int getTime100MicroSec() {
 void readBatteryLevel() {
 	measBattery = 1;
 }
+
+void resetOdometry() {
+	leftMotSteps = 0;
+	rightMotSteps = 0;
+	theta = 0;
+	xPos = 0;
+	yPos = 0;
+	rightDist = 0;
+	leftDist = 0;
+}
+
+
 

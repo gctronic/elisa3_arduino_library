@@ -6,8 +6,8 @@
 * Target:   any AVR device with hardware TWI 
 * Usage:    API compatible with I2C Software Library i2cmaster.h
 **************************************************************************/
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include <avr\io.h>
+#include <avr\interrupt.h>
 #include <inttypes.h>
 #include <compat/twi.h>
 
