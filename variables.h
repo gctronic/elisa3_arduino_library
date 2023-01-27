@@ -139,7 +139,7 @@ extern unsigned temperature;
 /***************/
 /*** VARIOUS ***/
 /***************/
-extern uint32_t clockTick;
+extern volatile uint32_t clockTick;
 extern unsigned char currentSelector;
 extern signed int calibrationCycle;
 extern unsigned char startCalibration;

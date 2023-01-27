@@ -153,7 +153,7 @@ unsigned temperature = 0;
 /***************/
 /*** VARIOUS ***/
 /***************/
-uint32_t clockTick = 0;					// this is the base time, each tick corresponds to 104 us (incremented inside adc isr);
+volatile uint32_t clockTick = 0;					// this is the base time, each tick corresponds to 104 us (incremented inside adc isr);
 													// beware that this variable is never reset (4294967295/10000/60/60/24 = about 5 days before overflow)
 unsigned char currentSelector = 0;					// current selector position
 signed int calibrationCycle = 0;					// indicate how many samples are currently taken for calibration
