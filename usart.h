@@ -18,8 +18,8 @@
 
 
 #include "variables.h"
-#include <avr\io.h>
-#include <avr\interrupt.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 #ifdef __cplusplus
 extern "C" {

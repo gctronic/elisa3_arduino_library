@@ -2,7 +2,7 @@
 #define EEPROM_IO_H
 
 
-#include <avr\eeprom.h>
+#include <avr/eeprom.h>
 #include "variables.h"
 
 #ifdef __cplusplus
