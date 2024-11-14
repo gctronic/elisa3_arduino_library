@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "variables.h"
-#include <avr/io.h>
+#include <avr\io.h>
 #include "leds.h"
 #include "twimaster.h"
 #include "motors.h"
@@ -91,6 +91,16 @@ void readAccelXYZ_2();
 void computeAngle();
 
 void readTemperature();
+
+void readGyroXYZ();
+
+void readGyroZ();
+
+void readMagXYZ(void);
+
+void readAll(void);
+
+void computeHeading(void);
 
 #ifdef __cplusplus
 } // extern "C"

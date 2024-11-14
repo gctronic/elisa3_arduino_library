@@ -18,8 +18,8 @@
 
 
 #include "variables.h"
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include <avr\io.h>
+#include <avr\interrupt.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,6 +71,8 @@ char usart0InputBufferEmpty();
  * \return byte received
  */
 unsigned char usart0Receive();
+
+void usart0PutString(const char* StringPtr);
 
 #ifdef __cplusplus
 } // extern "C"

@@ -130,17 +130,17 @@ unsigned char checkGlitch = 1;						// flag indicating the phase in which the si
 unsigned char behaviorState = 0;					// used to switch between behaviors (for small remote control)
 uint32_t lastCmdTime = 0;
 
-/*********************/
-/*** ACCELEROMETER ***/
-/*********************/
+/***********/
+/*** IMU ***/
+/***********/
 unsigned char accelAddress = MMA7455L_ADDR;			// accelerometer I2C communication address
 unsigned char useAccel = USE_MMAX7455L;				// flag indicatin which accelerometer (or none) is active
 signed int accX=0, accY=0, accZ=0;					// accelerometer calibrated values
 signed int accOffsetX = 0;							// values obtained during the calibration process; acc = raw_acc - offset
 signed int accOffsetY = 0;							// before calibration: values between -3g and +3g corresponds to values between 0 and 1024
 													// after calibration: values between -3g and +3g corresponds to values between -512 and 512
-signed int accOffsetXSum = 0;						// contains the sum of the accelerometer values during calibration (these values will then be 
-signed int accOffsetYSum = 0;						// divided by the number of samples taken to get the calibration offsets)
+int32_t accOffsetXSum = 0;							// contains the sum of the accelerometer values during calibration (these values will then be 
+int32_t accOffsetYSum = 0;							// divided by the number of samples taken to get the calibration offsets)
 signed int accXMax=0, accXMin=0, accYMax=0, accYMin=0;
 signed int currentAngle = 0;						// current orientation of the robot (in a vertical wall) extracted from both the x and y axes
 unsigned char currPosition=HORIZONTAL_POS;			//  "currPosition" is used to change the "robotPosition" in a smoother way
@@ -150,10 +150,21 @@ unsigned char robotPosition = 1;					// indicate whether the robot is in vertica
 signed char accBuff[6] = {0};
 unsigned temperature = 0;
 
+signed int gyroX=0, gyroY=0, gyroZ=0;				// gyro raw values [-32768..32767] => +-500 dps
+signed int magX=0, magY=0, magZ=0;					// magnetometer raw values
+signed int heading = 0;
+//signed int heading_compensated = 0;
+signed int roll = 0;
+signed int pitch = 0;
+signed int magOffsetMax[] = {0, 0, 0};
+signed int magOffsetMin[] = {0, 0, 0};
+signed int magOffset[] = {0, 0, 0};
+signed int verticalThreshold = VERTICAL_THRESHOLD;
+
 /***************/
 /*** VARIOUS ***/
 /***************/
-volatile uint32_t clockTick = 0;					// this is the base time, each tick corresponds to 104 us (incremented inside adc isr);
+uint32_t clockTick = 0;					// this is the base time, each tick corresponds to 104 us (incremented inside adc isr);
 													// beware that this variable is never reset (4294967295/10000/60/60/24 = about 5 days before overflow)
 unsigned char currentSelector = 0;					// current selector position
 signed int calibrationCycle = 0;					// indicate how many samples are currently taken for calibration
@@ -174,6 +185,7 @@ unsigned char calibrationWritten = 0;
 unsigned char greenLedState = 0;
 unsigned char rgbLedState = 0;
 uint32_t lastTick = 0;
+signed int debugValue[] = {0, 0, 0};
 
 /**************************/
 /*** OBSTACLE AVOIDANCE ***/
@@ -196,7 +208,7 @@ unsigned char computeOdometry = 0;
 float thetaAcc = 0.0;
 unsigned char calibState;
 unsigned char calibVelIndex;
-unsigned char calibWheel;
+unsigned char calibWheel = LEFT_WHEEL_FW_SC;
 signed int tempVel;
 signed int calibration[CALIBRATION_SAMPLES][8];
 unsigned long int timeoutOdometry;

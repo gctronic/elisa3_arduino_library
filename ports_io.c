@@ -18,7 +18,7 @@ void initPortsIO(void) {
 	DDRD = 0xFC;			// all pins to output; when usart and i2c peripherals are activated they change the pins direction accordingly
 	PORTD = 0x03;			// default for unused pins is 0
 
-	DDRE = 0xFC;			// all pins to output (pwm and dir for motor right as output; when usart is activated it changes the pins direction accordingly)
+	DDRE = 0xFF;			// all pins to output (pwm and dir for motor right as output; when usart is activated it changes the pins direction accordingly)
 	PORTE = 0x00;			// default for unused pins is 0; pwm for motors set to 0 when stopped
 
 	DDRF = 0x00;			// adc channel pins as input		
